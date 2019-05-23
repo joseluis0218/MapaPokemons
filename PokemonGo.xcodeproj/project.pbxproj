@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		74F5E084229659D900BC118D /* PokePin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F5E083229659D800BC118D /* PokePin.swift */; };
 		F3E81CD1228F569200F206B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E81CD0228F569200F206B2 /* AppDelegate.swift */; };
 		F3E81CD3228F569200F206B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E81CD2228F569200F206B2 /* ViewController.swift */; };
 		F3E81CD6228F569200F206B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3E81CD4228F569200F206B2 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		74F5E083229659D800BC118D /* PokePin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokePin.swift; sourceTree = "<group>"; };
 		F3E81CCD228F569200F206B2 /* PokemonGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3E81CD0228F569200F206B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3E81CD2228F569200F206B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			children = (
 				F3E81CD0228F569200F206B2 /* AppDelegate.swift */,
 				F3E81CD2228F569200F206B2 /* ViewController.swift */,
+				74F5E083229659D800BC118D /* PokePin.swift */,
 				F3E81CD4228F569200F206B2 /* Main.storyboard */,
 				F3E81CE7228F69F000F206B2 /* PokedexViewController.swift */,
 				F3E81CDA228F569200F206B2 /* Assets.xcassets */,
@@ -155,6 +158,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74F5E084229659D900BC118D /* PokePin.swift in Sources */,
 				F3E81CD3228F569200F206B2 /* ViewController.swift in Sources */,
 				F3E81CE8228F69F000F206B2 /* PokedexViewController.swift in Sources */,
 				F3E81CD1228F569200F206B2 /* AppDelegate.swift in Sources */,
