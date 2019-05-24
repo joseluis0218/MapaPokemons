@@ -20,21 +20,19 @@ class PokedexViewController: UIViewController, UITableViewDelegate,UITableViewDa
         pokemonsAtrapados = obtenerPokemonsAtrapados()
         pokemonsNoAtrapados = obtenerPokemonsNoAtrapados()
     }
-    func tableView(_ tableView : UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath){
-        
-        if editingStyle == .delete{
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             let pokemon = pokemonsAtrapados[indexPath.row]
+            pokemonsAtrapados.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             pokemon.atrapado = false
-            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            pokemonsAtrapados = obtenerPokemonsAtrapados()
+            pokemonsNoAtrapados = obtenerPokemonsNoAtrapados()
             tableView.reloadData()
-//
-//            do{
-//                pokemonsAtrapados = try context.fetch(Pokemon.fetchRequest())
-//                tableView.reloadData()
-//            }catch {}
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
         }
-        
     }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0{
             return "Atrapados"

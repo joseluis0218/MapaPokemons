@@ -34,7 +34,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         mapView.delegate = self
         mapView.showsUserLocation = true
         ubicacion.startUpdatingLocation()
-        Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: {(timer) in
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: {(timer) in
           if let coord = self.ubicacion.location?.coordinate{
                 let pokemon = self.pokemons[Int(arc4random_uniform(UInt32(self.pokemons.count)))]
                 let pin = PokePin(coord:coord, pokemon:pokemon)
@@ -96,25 +96,33 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 let pokemon = (view.annotation as! PokePin).pokemon
                 if MKMapRectContainsPoint(mapView.visibleMapRect, MKMapPointForCoordinate(coord)){
                     print("Puede atrapar al pokemon")
-//                    if pokemon.atrapado == true  {
-//                        let alertaVC = UIAlertController(title: "Ups!", message: "Ya tienes a ese pokemon, ¿Aun asi deseas capturarlo?", preferredStyle: .alert)
-//                        let okAccion = UIAlertAction(title: "Aceptar", style: .default, handler:nil)
-//                        alertaVC.addAction(okAccion)
-//                        self.present(alertaVC, animated: true, completion: nil)
-//                    }else {
-                    pokemon.atrapado = true
-                    (UIApplication.shared.delegate as! AppDelegate).saveContext()
-                    mapView.removeAnnotation(view.annotation!)
-                    let alertaVC = UIAlertController(title: "Felicidades!", message: "Atrapaste a un \(pokemon.nombre!)", preferredStyle: .alert)
-                    let pokedexAccion = UIAlertAction(title: "Pokedex", style: .default, handler: {
-                        (action) in
-                        self.performSegue(withIdentifier: "pokedexSegue", sender: nil)
-                    })
-                    alertaVC.addAction(pokedexAccion)
-                    let okAccion = UIAlertAction(title: "OK", style: .default, handler:nil)
-                    alertaVC.addAction(okAccion)
-                    self.present(alertaVC, animated: true, completion: nil)
-//                    }
+                    print("Estado de pokemon", pokemon.atrapado);
+                    if pokemon.atrapado {
+                        let alertaVC = UIAlertController(title: "Ups!", message: "Ya tienes a ese pokemon, ¿Aun asi deseas capturarlo?", preferredStyle: .alert)
+                        let acepptAccion = UIAlertAction(title: "Aceptar", style: .default, handler: {
+                            (action) in
+                            self.performSegue(withIdentifier: "pokedexSegue", sender: nil)
+                            mapView.removeAnnotation(view.annotation!)
+                        })
+                        alertaVC.addAction(acepptAccion)
+                        let cancelAccion = UIAlertAction(title: "Cancelar", style: .default, handler:nil)
+                        alertaVC.addAction(cancelAccion)
+                        self.present(alertaVC, animated: true, completion: nil)
+                    }else{
+                        pokemon.atrapado = true
+                        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+                        mapView.removeAnnotation(view.annotation!)
+                        let alertaVC = UIAlertController(title: "Felicidades!", message: "Atrapaste a un \(pokemon.nombre!)", preferredStyle: .alert)
+                        let pokedexAccion = UIAlertAction(title: "Pokedex", style: .default, handler: {
+                            (action) in
+                            self.performSegue(withIdentifier: "pokedexSegue", sender: nil)
+                        })
+                        alertaVC.addAction(pokedexAccion)
+                        let okAccion = UIAlertAction(title: "OK", style: .default, handler:nil)
+                        alertaVC.addAction(okAccion)
+                        self.present(alertaVC, animated: true, completion: nil)
+                    }
+
                 }else{
                     let alertaVC = UIAlertController(title: "Ups!", message: "Estas muy lejos de ese \(pokemon.nombre!)", preferredStyle: .alert)
                     let okAccion = UIAlertAction(title: "OK", style: .default, handler:nil)
