@@ -34,12 +34,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         mapView.delegate = self
         mapView.showsUserLocation = true
         ubicacion.startUpdatingLocation()
-        Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: {(timer) in
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: {(timer) in
           if let coord = self.ubicacion.location?.coordinate{
                 let pokemon = self.pokemons[Int(arc4random_uniform(UInt32(self.pokemons.count)))]
                 let pin = PokePin(coord:coord, pokemon:pokemon)
-                let randomLat = (Double(arc4random_uniform(200)) - 100.0) / 5000.0
-                let randomLon = (Double(arc4random_uniform(200)) - 100.0) / 5000.0
+                let randomLat = (Double(arc4random_uniform(200)) - 100.0) / 50000.0
+                let randomLon = (Double(arc4random_uniform(200)) - 100.0) / 50000.0
                 pin.coordinate.longitude += randomLon
                 pin.coordinate.latitude += randomLat
                 self.mapView.addAnnotation(pin)
